@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOLO Versions Showcase</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #333;
+  }
+
+  nav {
+    text-align: center;
+    background-color:rgba(80, 173, 189, 0.8);;
+    padding: 10px 0;
+    border-bottom: 2px solid #3c4b4e;
+  }
+
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+  }
+
+  nav a:hover {
+    background-color:rgba(20, 134, 145, 0.9);
+  }
+
+  .section {
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    max-width: 1500px; /* Increased maximum width */
+    width: 90%; /* Adjusted width to cover the full page */
+    border: 2px solid #ddd; /* Increased border size */
+  }
+
+  .section:hover {
+    transform: translateY(-5px);
+  }
+
+  .section h2 {
+    margin-bottom: 10px;
+    color: #000000;
+  }
+
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .image-grid img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .image-grid img:hover {
+    transform: scale(1.05);
+  }
+
+  .image-name {
+    margin-top: 10px;
+  }
+
+  /* Alert symbol */
+  .alert {
+    color: #f39c12;
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="#version1">YOLO v5</a>
+  <a href="#version4">YOLO v6</a>
+  <a href="#version2">YOLO v7</a>
+  <a href="#version3">YOLO v8</a>
+</nav>
+
+<div class="section" id="version1">
+  <h2>YOLO v5 Results</h2>
+  <div class="image-grid" id="version1-images">
+    <!-- Images for YOLO v5 will be dynamically loaded here using JavaScript -->
+  </div>
+</div>
+
+<div class="section" id="version2">
+  <h2>YOLO v7 Results</h2>
+  <div class="image-grid" id="version2-images">
+    <!-- Images for YOLO v7 will be dynamically loaded here using JavaScript -->
+  </div>
+</div>
+
+<div class="section" id="version3">
+  <h2>YOLO v8 Results</h2>
+  <div class="image-grid" id="version3-images">
+    <!-- Images for YOLO v8 will be dynamically loaded here using JavaScript -->
+  </div>
+</div>
+
+<div class="section" id="version4">
+  <h2>YOLO v6 Results <span class="alert">&#9888;</span></h2>
+  <p>Results of YOLOv6 were generated in the form of a predictions.json file.</p>
+</div>
+
+<script>
+  // Array of image URLs for each YOLO version
+  const yoloVersions = {
+    "YOLO v5": [
+      { url: "Yolo5R/confusion_matrix.png", name: "Confusion Matrix" },
+      { url: "Yolo5R/F1_curve.png", name: "F1-confidence Curve" },
+      { url: "Yolo5R/P_curve.png", name: "Precision-confidence Curve" },
+      { url: "Yolo5R/PR_curve.png", name: "Precision-Recall Curve" },
+      { url: "Yolo5R/R_curve.png", name: "Recall-confidence Curve" },
+      { url: "Yolo5R/results.png", name: "Results" }
+    ],
+    "YOLO v7": [
+      { url: "Yolo7R/confusion_matrix.png", name: "Confusion Matrix" },
+      { url: "Yolo7R/F1_curve.png", name: "F1-confidence Curve" },
+      { url: "Yolo7R/P_curve.png", name: "Precision-confidence Curve" },
+      { url: "Yolo7R/PR_curve.png", name: "Precision-Recall Curve" },
+      { url: "Yolo7R/R_curve.png", name: "Recall-confidence Curve" },
+      { url: "Yolo7R/results.png", name: "Results" }
+    ],
+    "YOLO v8": [
+      { url: "Yolo8R/confusion_matrix.png", name: "Confusion Matrix" },
+      { url: "Yolo8R/F1_curve.png", name: "F1-confidence Curve" },
+      { url: "Yolo8R/P_curve.png", name: "Precision-confidence Curve" },
+      { url: "Yolo8R/PR_curve.png", name: "Precision-Recall Curve" },
+      { url: "Yolo8R/R_curve.png", name: "Recall-confidence Curve" },
+      { url: "Yolo8R/results.png", name: "Results" }
+    ],
+    "YOLO v6": [ // Added YOLO v6 with placeholder data
+      { url: "Yolo6R/predictions.json", name: "Predictions JSON File" }
+    ]
+  };
+
+  // Function to create image elements
+  function createImageElement(imageUrl, imageName) {
+    const img = document.createElement('img');
+    img.src = imageUrl;
+    img.alt = imageName;
+    const name = document.createElement('p');
+    name.textContent = imageName;
+    const container = document.createElement('div');
+    container.appendChild(img);
+    container.appendChild(name);
+    return container;
+  }
+
+  // Function to dynamically load images for a specific version
+  function loadImages(version, containerId) {
+    const imageGrid = document.getElementById(containerId);
+    yoloVersions[version].forEach(image => {
+      const imageElement = createImageElement(image.url, image.name);
+      imageGrid.appendChild(imageElement);
+    });
+  }
+
+  // Call the function to load images for each version when the page loads
+  window.onload = function() {
+    loadImages("YOLO v5", "version1-images");
+    loadImages("YOLO v7", "version2-images");
+    loadImages("YOLO v8", "version3-images");
+    loadImages("YOLO v6", "version4-images");
+  };
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

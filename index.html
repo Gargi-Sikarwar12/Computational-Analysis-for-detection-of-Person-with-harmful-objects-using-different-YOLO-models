@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YOLO Versions Showcase</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: linear-gradient(to bottom right, #56d9edac, #070707aa); /* Background gradient */
+      color: #463939;
+      overflow: hidden; /* Hide overflow to prevent scrolling */
+    }
+    .header {
+      background-color: rgba(80, 173, 189, 0.8); /* Transparent background with opacity */
+      color: #ffffff;
+      padding: 10px;
+      text-align: center;
+      font-size: 20px;
+      box-shadow: 0 4px 8px rgba(80, 74, 74, 0.4);
+    }
+    .content {
+      min-height: 80vh; /* Adjusted to cover the full viewport height */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .overlay {
+      text-align: center;
+      color: #333;
+      padding: 20px;
+      max-width: 800px; /* Increased maximum width */
+      background-color: rgba(255, 255, 255, 0.9); /* Transparent background with opacity */
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(73, 67, 67, 0.871);
+      animation: fadeIn 1s ease forwards;
+    }
+    .paragraph {
+      margin-bottom: 20px;
+    }
+    .homepage-button-container {
+      margin-top: 20px;
+    }
+    .homepage-button {
+      background-color: rgba(10, 156, 182, 0.9); /* Changed color */
+      color: #fff;
+      padding: 15px 25px;
+      text-decoration: none;
+      border-radius: 5px;
+      text-align: center;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      display: inline-block;
+    }
+    .homepage-button:hover {
+      background-color: rgba(20, 134, 145, 0.9); /* Hover color */
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Analysis of YOLO models </h1>
+  </div>
+
+  <div class="content">
+    <div class="overlay">
+      <div class="paragraph">
+        <h2>The Purpose of Our Website</h2>
+        <p>The website "Computational analysis of person with harmful object detection
+          using different YOLO versions" aims to serve as a comprehensive resource
+          for researchers, practitioners, and developers interested in the field of 
+          computer vision and object detection. By providing in-depth analyses and
+          comparisons of various YOLO (You Only Look Once) versions, the website 
+          facilitates the exploration and understanding of their effectiveness in 
+          detecting harmful objects in proximity to individuals. Through detailed 
+          evaluations, users can gain insights into the strengths, limitations, and
+          performance metrics of each YOLO version, enabling informed decision-making
+          for the implementation of robust and accurate harmful object detection systems.
+          Additionally, the website may offer access to datasets, tools, and tutorials 
+          to support further research, development, and deployment efforts in this critical 
+          area of application.</p>
+      </div>
+      <div class="homepage-button-container">
+        <a href="homepage.html" class="homepage-button">Homepage</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+
+

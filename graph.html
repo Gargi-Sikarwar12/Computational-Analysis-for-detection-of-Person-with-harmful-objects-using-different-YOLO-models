@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluation Metrics Table</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+      background-color: rgba(80, 173, 189, 0.8); /* Transparent background with opacity */
+      color: #ffffff;
+      padding: 10px;
+      text-align: center;
+      font-size: 20px;
+      box-shadow: 0 4px 8px rgba(80, 74, 74, 0.4);
+    }
+        .container {
+            max-width: 1000px; /* Increased size */
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px; /* Increased padding for better spacing */
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        /* tr:nth-child(even) {
+            background-color: #f9f9f9; /* Light gray background for even rows */
+        
+        tr:hover {
+            background-color: #eaeaea; /* Darker gray background on hover */
+        }
+        th:first-child, td:first-child {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+        th:last-child, td:last-child {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        /* Colors for YOLO versions */
+        .yolo-v5 { background-color: #f5d9ae; }
+        .yolo-v6 { background-color: #bbdefb; }
+        .yolo-v7 { background-color: #c8e6c9; }
+        .yolo-v8 { background-color: #ffcdd2; }
+        /*.yolo-v9 { background-color: #d1c4e9; }
+        /* Graph container */
+        #line-chart-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 style="text-align: center;">Comparision Table</h1>
+        <table>
+            <tr>
+                <th style="width: 20%;">YOLO Version</th>
+                <th style="width: 20%;">Precision</th>
+                <th style="width: 20%;">Recall</th>
+                <!-- <th style="width: 20%;">F1 Score</th> -->
+                <th style="width: 20%;">mAP</th>
+            </tr>
+            <tr class="yolo-v5">
+                <td>YOLO v5</td>
+                <td>88%</td>
+                <td>78.5%</td>
+                
+                <td>98.7%</td>
+            </tr>
+            <tr class="yolo-v6">
+                <td>YOLO v6</td>
+                <td>96.3%</td>
+                <td>71.6%</td>
+                <td>96.2%</td>
+            </tr>
+            <tr class="yolo-v7">
+                <td>YOLO v7</td>
+                <td>64.8%</td>
+                <td>36.4%</td>
+                <td>28.2%</td>
+            </tr>
+            <tr class="yolo-v8">
+                <td>YOLO v8</td>
+                <td>90.7%</td>
+                <td>94.3%</td>
+                <td>97.8%</td>
+            </tr>
+           <!-- <tr class="yolo-v9">
+                <td>YOLO v5</td>
+                <td>0.90</td>
+                <td>0.85</td>
+                <td>0.88</td>
+                <td>0.89</td>
+            </tr> -->
+        </table>
+        
+        <!-- Line chart container -->
+        <div id="line-chart-container">
+            <h1 style="text-align: center;">Comparision Graph</h1>
+            <canvas id="line-chart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Data for line chart
+        const yoloVersions = ['YOLO v5', 'YOLO v6', 'YOLO v7', 'YOLO v8'];
+        const precisionData = [0.88, 0.96, 0.64, 0.90];
+        const recallData = [0.78, 0.71, 0.36, 0.94];
+        // const f1ScoreData = [0.82, 0.72, 0.78, 0.85];
+        const mapData = [0.98, 0.96, 0.28, 0.97];
+        
+        // Create line chart
+        const ctx = document.getElementById('line-chart').getContext('2d');
+        const lineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: yoloVersions,
+                datasets: [{
+                    label: 'Precision',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    data: precisionData,
+                    fill: false
+                }, {
+                    label: 'Recall',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    data: recallData,
+                    fill: false
+                }, // {
+                    // label: 'F1 Score',
+                    // borderColor: 'rgba(255, 206, 86, 1)',
+                    // data: f1ScoreData,
+                    // fill: false
+                //}, 
+                
+                {
+                    label: 'mAP',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    data: mapData,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'YOLO Version'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Value'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+ 
+
